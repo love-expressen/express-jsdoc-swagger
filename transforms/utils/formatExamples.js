@@ -11,6 +11,11 @@ const formatJSONExamples = type => (exampleList, contentType, status) => {
       .forEach(k => {
         try {
           cloneExamples[k].value = JSON.parse(cloneExamples[k].value);
+          
+          const exampleRef = cloneExamples[k].value["$ref"];
+          if(exampleRef) {
+            cloneExamples[k] = {"$ref": exampleRef};
+          }
         } catch (err) {
           const message = type === 'requestBody' ? 'requestBody example malformed' : `response example for status ${status} with content-type ${DEFAULT_CONTENT_TYPE} malformed`;
           errorMessage(message);

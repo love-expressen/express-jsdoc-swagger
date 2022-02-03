@@ -40,7 +40,7 @@ const formatExamples = (exampleValues = []) => exampleValues
     ...exampleMap,
     [example.status]: {
       ...exampleMap[example.status],
-      [`example${i + 1}`]: example.value["$ref"] ? {"$ref": example.value["$ref"]} : {
+      [`example${i + 1}`]: {
         summary: example.summary,
         value: example.value,
       },
